@@ -5,6 +5,8 @@
   <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/main.css">
   <title>AJAX with JavaScript</title>
+
+  <!-- Traditional way to make AJAX request without using Jquery
   <script>
           var xhr = new XMLHttpRequest(); // step 1 Create an XMLHTTP Request Object.
           xhr.onreadystatechange = function () { // step 2 Create a callback function
@@ -18,6 +20,22 @@
               document.getElementById('load').style.display = "none";
           }
   </script>
+
+  -->
+
+  <!-- New way to make AJAX request using Jquery -->
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script>
+    function sendAJAX(){
+        $('#ajax').load('sidebar.html');
+        $('#load').hide();
+        //The $('#ajax') selects the div id with ajax and .load requests the html and inserts it into the page
+        //The $('#load') selects the button with id load and .hide hides it.
+    }
+
+
+  </script>
+
 </head>
 <body>
   <div class="grid-container centered">
@@ -26,9 +44,9 @@
         <div class="grid-100">
           <h1>Bring on the AJAX</h1>
           <button id="load" onclick="sendAJAX()">Bring it!</button>
-          <ul id="ajax">
+          <div id="ajax">
 
-          </ul>
+          </div>
         </div>
       </div>
     </div>
