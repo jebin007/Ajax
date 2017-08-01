@@ -19,6 +19,7 @@ roomRequest.onreadystatechange = function () {
 roomRequest.open('GET', '/data/rooms.json');
 roomRequest.send();
 
+/* Traditional way of passing AJAX without JQUERY
 var xhr = new XMLHttpRequest();
 xhr. onreadystatechange = function () {
     if(xhr.readyState === 4) {
@@ -29,7 +30,7 @@ xhr. onreadystatechange = function () {
         for (var i=0; i<employees.length; i += 1) {
             if (employees[i].inoffice === true) {
                 statusHTML += '<li class="in">';
-            } else {
+            } else {``
                 statusHTML += '<li class="out">';
             }
             statusHTML += employees[i].name;
@@ -41,3 +42,29 @@ xhr. onreadystatechange = function () {
 };
 xhr.open('GET', 'data/employees.json');
 xhr.send();
+
+*/
+
+
+//New way of passing AJAX With JQuery
+$(document).ready(function() {
+    var url = "data/employees.json";
+    $.getJSON(url, function(response) {                 //This function parses the JSON which is equivalent to JSON.parse
+        var statusHTML = '<ul class="bulleted">';
+        $.each(response,function(index, employee) {     // This function is equivalent to the for loop of the length of employees
+            if(employee.inoffice === true){
+                statusHTML += '<li class="in">';
+            } else {
+                statusHTML += '<li class="out">';
+            }
+            statusHTML += employee.name + '</li>';
+        });
+        statusHTML += '</ul>';
+        $('#employeeList').html(statusHTML);
+
+        }); //end get JSON
+
+
+    }); //end ready
+
+
